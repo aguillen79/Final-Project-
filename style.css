@@ -29,6 +29,10 @@ body{
 
 background-color: rgb(19, 48, 64);
 color: white;
+display: flex;
+width: 300px;
+height: 610px;
+border-radius: 10px;
 
 }
 
@@ -36,10 +40,6 @@ color: white;
 .form-check{
     border-color: black;
     border:solid grey 1px;
-    height: 40px;
-    
-
-   
     
 }
 
@@ -104,15 +104,24 @@ background-color: #d7da30;
     
 }
 
-/* .spanerror{
-    background-color: hsl(3, 69%, 50%);
-    color: white;
+
+.pagos_generales{
+    background-color: rgb(2, 25, 37);
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    border-top-color: #d7da30;
+    border-top-style: solid;
+    
+    
 }
 
-.texterror {
-    border-color: 1px solid  hsl(3, 69%, 50%);
-} */
+.pago_del_mes{
+    color: #d7da30;
 
+}
 
-
-
+.pago_total_prestamo{
+    color:white;
+ 
+}

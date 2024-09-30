@@ -15,6 +15,7 @@ form.addEventListener("submit", (e) => {
     let monto = dataform.get("prestamo")
     let interes = dataform.get("interes")
     let ano = dataform.get("ano")
+    let mortgageType = dataform.get("mortgageType")
 
 
     let Validar = true;
@@ -22,79 +23,64 @@ form.addEventListener("submit", (e) => {
 
     if (lleno(monto)) {
         Validar = false
-        MostrarError("prestamo", "Mortgage amount is requiered.")
+        MostrarError("prestamo", "Monto es requerdio.")
     }
 
     if (lleno(interes)) {
         Validar = false
-        MostrarError("interes", "Interest rate is requiered.")
+        MostrarError("interes", "Interes es requerido.")
     }
 
     if (lleno(ano)) {
-        Validar = false
-        MostrarError("ano", "Mortgage term is requiered.")
+        Validar = false;
+        MostrarError("ano", "Año es requerido.")
     }
 
-
-
-    if (lleno(monto) && positivo(monto)) {
-        Validar = false
-        MostrarError("prestamo", "Mortgage amount need be positive number.")
+    
+    if (lleno(mortgageType)) {
+        Validar = false;
+        MostrarError("mortgageType", "Type es requerido.") 
     }
 
-    if (lleno(interes) && positivo(interes)) {
-        Validar = false
-        MostrarError("interes", "Interest rate need be positive number.")
-    }
-
-    if (lleno(ano) && positivo(ano)) {
-        Validar = false
-        MostrarError("ano", "Interest rate need be positive number.")
-    }
-
-
+  
+   
     if (Validar) {
-      /*   alert("entro") */
+      
         document.querySelector(".mostras_imagen").classList.add("d-none")
         document.querySelector(".mostras_resultado").classList.remove("d-none")
         
-        let pagomes = calcularPagoMensual(monto, interes, ano);
+        let pagomes = calculomes(monto, interes, ano);
         document.querySelector(".pago_del_mes").textContent = `${pagomes}`
+
+        let pagototal = calculototal(monto, interes, ano);
+        document.querySelector(".pago_total_prestamo").textContent = `${pagototal}`
         
 
     }
 
 })
 
+function clearform(){
+    document.getElementById("formdata").reset();
+    MostrarError.reset();
+    
+
+}
 
 function lleno(value) {
     return value === "" || value === null;
 }
 
 
-function positivo(value) {
-    return !isNaN(value) && Number(value) > 0;
-
-}
-
-function positivo(value) {
-    const Inte = /[+]\d+$/;
-    return Inte.test(value) && Number(value) > 0;
-}
-
-
-function positivo(value) {
-    const Inte = /[+]\d+$/;
-    return Inte.test(value) && Number(value) > 0;
-}
-
 
 function MostrarError(inputName, message) {
+
     const input = document.querySelector(`input[name="${inputName}"]`);
     const errorElement = document.createElement("div");
     errorElement.classList.add("error-menssage");
     errorElement.style.color = "red";
     errorElement.innerText = message;
+    
 
     if (input) {
         input.parentElement.appendChild(errorElement);
@@ -104,20 +90,35 @@ function MostrarError(inputName, message) {
 }
 
 
-function calcularPagoMensual(P, r_anual, n_anos) {
+function calculomes(monto, interes, ano) {
 
-    let r_mensual = r_anual / 12 / 100;
+    let interes_mensual = interes / 12 / 100;
 
-    let n_total = n_anos * 12;
+    let total_meses = ano * 12;
 
-    let M = (P * r_mensual * Math.pow(1 + r_mensual, n_total)) / (Math.pow(1 + r_mensual, n_total) - 1);
+    let MesPago = (monto * interes_mensual * Math.pow(1 + interes_mensual, total_meses)) / (Math.pow(1 + interes_mensual, total_meses) - 1);
 
-    return M.toFixed(2);
+    return MesPago.toFixed(2);
 
 }
 
-function calcularInteres(P, r_anual, n_anos) {
-    return (P * r_anual * n_anos).toFixed(2);
+    function calculototal(monto, interes, ano) {
+
+        let interes_mensual = interes / 12 / 100;
+    
+        let total_meses = ano * 12;
+    
+        let TotalPago = ((monto * interes_mensual * Math.pow(1 + interes_mensual, total_meses)) / (Math.pow(1 + interes_mensual, total_meses) - 1)) * total_meses;
+    
+        clearform();
+
+        return TotalPago.toFixed(2);
+
+    
+}
+
+function calculointeres(monto, interes, ano) {
+    return (monto * interes * ano).toFixed(2);
 
 }
 

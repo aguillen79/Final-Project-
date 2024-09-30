@@ -26,18 +26,18 @@
 
                     <h2 class="titulo">Mortgage Calculator</h2>
 
-                    <button class="boton text-decoration-underline font-monospace">clear all</button>
+                    <button class="boton text-decoration-underline font-monospace" onclick = "clearform()" >clear all</button>
 
                 </div>
 
-                <form>
+                <form id="formdata" >
                 
                     <p>Mortgage Amount</p>
                 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">L.</span>
-                        <input type="text" class="form-control" placeholder="" aria-label="Username"
-                            aria-describedby="basic-addon1" name="prestamo">
+                        <input type="number" class="form-control" placeholder="" aria-label="Username"
+                            aria-describedby="basic-addon1" name="prestamo" onkeypress="return '0123456789'.includes(event.key)" />
                     </div>
 
                     <div>
@@ -46,8 +46,8 @@
 
                             <div class="input-group mb-3">
 
-                                <input type="text" class="form-control" placeholder="" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="ano">
+                                <input type="number" class="form-control" placeholder="" aria-label="Username"
+                                    aria-describedby="basic-addon1" name="ano" onkeypress="return '0123456789'.includes(event.key)" />
                                 <span class="input-group-text" id="basic-addon2">Year</span>
 
                             </div>
@@ -57,8 +57,8 @@
                             <p>Interes Rate</p>
                             <div class="input-group mb-3">
 
-                                <input type="text" class="form-control" placeholder="" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="interes">
+                                <input type="number" class="form-control" placeholder="" aria-label="Username"
+                                    aria-describedby="basic-addon1" name="interes" onkeypress="return '0123456789'.includes(event.key)" />
                                 <span class="input-group-text" id="basic-addon3">%</span>
 
                             </div>
@@ -78,7 +78,7 @@
 
 
                         <div class="form-check mb-3 con1">
-                            <input class="inputra ms-2 me-3" type="radio" name="mortgageType" id="repayment" value="repayment">
+                            <input class="inputra ms-2 me-3" type="radio" name="mortgageType" id="repayment" value="interes">
                             <label class="form-check-label" for="repayment">
                                 Interest only
                             </label>
@@ -124,8 +124,10 @@
 
                         <div class="pagos_totales">
 
+                            <p>____________________________________________________________</p>
+
                             <p>Total you'll repay over the term</p>
-                        <h3 class="pago_total_prestamo"></h3>
+                        <h5 class="pago_total_prestamo"></h3>
                                 
                         </div>
 
