@@ -60,17 +60,18 @@ form.addEventListener("submit", (e) => {
 
 })
 
-function clearform(){
-    document.getElementById("formdata").reset();
-    MostrarError.reset();
-    
-
-}
 
 function lleno(value) {
     return value === "" || value === null;
 }
 
+/* function ClearMostrarError(inputName, message) {
+
+    const input = document.querySelector(`input[name="${inputName}"]`);
+    const errorElement = document.createElement("div");
+    errorElement.clearError() */
+
+ 
 
 
 function MostrarError(inputName, message) {
@@ -84,6 +85,10 @@ function MostrarError(inputName, message) {
 
     if (input) {
         input.parentElement.appendChild(errorElement);
+
+
+    }else{
+        clearform();
 
     }
 
@@ -111,6 +116,7 @@ function calculomes(monto, interes, ano) {
         let TotalPago = ((monto * interes_mensual * Math.pow(1 + interes_mensual, total_meses)) / (Math.pow(1 + interes_mensual, total_meses) - 1)) * total_meses;
     
         clearform();
+        
 
         return TotalPago.toFixed(2);
 
@@ -123,6 +129,15 @@ function calculointeres(monto, interes, ano) {
 }
 
 
+function clearform(){
+    document.getElementById("formdata").reset();
+   
+    reset.MostrarError();
+
+   
+
+
+}
 
 
 
